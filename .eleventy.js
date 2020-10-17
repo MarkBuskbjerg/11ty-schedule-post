@@ -2,12 +2,14 @@
 
 module.exports = function (eleventyConfig) {
 
-	eleventyConfig.addCollection('post', (collection) => {
-		if (process.env.ELEVENTY_ENV !== 'production')
-			return [...collection.getFilteredByGlob('./src/posts/*.md')]
-		else
-			return [...collection.getFilteredByGlob('./src/posts/*.md')].filter((post) => !post.data.draft)
-	})
+	eleventyConfig.addCollection("exampleCollection", function (collectionApi) {
+		// get unsorted items
+		if (process.env.ELEVENTY_ENV !== 'production') {
+			return collectionApi.getFilteredByGlob('**/*.njk');
+		} else {
+			return collectionApi.getFilteredByGlob('**/*.njk').filter((exampleCollection) => !exampleCollection.data.draft);
+		}
+	});
 
 	// Layout aliases
 	eleventyConfig.addLayoutAlias('base', 'layouts/base.njk');
