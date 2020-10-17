@@ -2,10 +2,17 @@
 
 module.exports = function (eleventyConfig) {
 
-	eleventyConfig.addCollection("exampleCollection", function (collectionApi) {
-		// get unsorted items
+	/*eleventyConfig.addCollection("exampleCollection", function (collectionApi) {
 		if (process.env.ELEVENTY_ENV !== 'production') {
-			return collectionApi.getFilteredByGlob('**/*.njk');
+			return collectionApi.getFilteredByGlob();
+		} else {
+			return collectionApi.getFilteredByGlob().filter((exampleCollection) => !exampleCollection.data.draft);
+		}
+	});*/
+
+	eleventyConfig.addCollection("exampleCollection", function (collectionApi) {
+		if (process.env.ELEVENTY_ENV === 'development') {
+			return collectionApi.getFilteredByGlob('**/*.njk')
 		} else {
 			return collectionApi.getFilteredByGlob('**/*.njk').filter((exampleCollection) => !exampleCollection.data.draft);
 		}
