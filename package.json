@@ -1,7 +1,7 @@
 {
-	"name": "11ty-schedule-post",
-	"version": "0.1",
-	"description": "An attempt to create plugin for 11ty enabling to schedule content for future publishing",
+	"name": "ta11y",
+	"version": "0.1.0",
+	"description": "A simple 11ty starter project with complete TailwindCSS integration",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
