@@ -1,6 +1,6 @@
 module.exports = async () => {
 	return {
-		layout: 'base',
+		layout: 'layouts/single-post.njk',
 		tags: 'post',
 	};
 };
