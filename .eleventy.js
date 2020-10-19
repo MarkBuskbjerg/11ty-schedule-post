@@ -1,21 +1,14 @@
 /* eslint-disable */
 
 module.exports = function (eleventyConfig) {
-
-	/*eleventyConfig.addCollection("exampleCollection", function (collectionApi) {
-		if (process.env.ELEVENTY_ENV !== 'production') {
-			return collectionApi.getFilteredByGlob();
-		} else {
-			return collectionApi.getFilteredByGlob().filter((exampleCollection) => !exampleCollection.data.draft);
-		}
-	});*/
-
-	eleventyConfig.addCollection("exampleCollection", function (collectionApi) {
-		if (process.env.ELEVENTY_ENV === 'development') {
-			return collectionApi.getFilteredByGlob('**/*.njk')
-		} else {
-			return collectionApi.getFilteredByGlob('**/*.njk').filter((exampleCollection) => !exampleCollection.data.draft);
-		}
+	// Returns a collection of blog posts in reverse date order
+	eleventyConfig.addCollection('blog', collection => {
+		const isLive = post => !post.data.draft;
+		return collection
+			.getFilteredByGlob('**/*.njk')
+			.filter(isLive)
+			.filter(item => !item.inputPath.includes('index.njk'))
+			.reverse();
 	});
 
 	// Layout aliases

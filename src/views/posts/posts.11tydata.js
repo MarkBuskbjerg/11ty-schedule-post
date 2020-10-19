@@ -1,6 +1,11 @@
-module.exports = async () => {
-	return {
-		layout: 'layouts/single-post.njk',
-		tags: 'post',
-	};
+module.exports = {
+	layout: 'single-post',
+	eleventyComputed: {
+		permalink(data) {
+			if (!data.draft) {
+				return data.permalink || '/blog/{{ title | slug }}/index.html';
+			}
+			return false;
+		}
+	}
 };
